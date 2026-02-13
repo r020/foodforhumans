@@ -1,40 +1,998 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food for Humans</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Optimized stylesheet -->
-    <script src="scripts.js" async></script> <!-- Asynchronously loaded script -->
+    <title>Savory Bites | Fine Dining Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #c54e1a;
+            --secondary-color: #e67e22;
+            --accent-color: #d4af37;
+            --dark-color: #2c1810;
+            --light-color: #f8f4f0;
+            --white: #ffffff;
+            --gray: #7a7a7a;
+            --light-gray: #f5f5f5;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .logo-icon {
+            margin-right: 8px;
+            font-size: 2.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--white);
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary-color);
+        }
+        
+        /* Featured Dishes */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .dishes {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+        
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
+        }
+        
+        .dish-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .dish-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .dish-img {
+            height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .dish-content {
+            padding: 25px;
+        }
+        
+        .dish-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .dish-content .price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin: 8px 0;
+        }
+        
+        .dish-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .about-text .highlight {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .about-img {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-hover);
+            position: relative;
+        }
+        
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(197, 78, 26, 0.2), rgba(197, 78, 26, 0.2));
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--white);
+            text-align: center;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .testimonial-card {
+            background: var(--light-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin: 15px;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .testimonial-text::before {
+            top: -20px;
+            left: -15px;
+        }
+        
+        .testimonial-text::after {
+            content: '"';
+            bottom: -40px;
+            right: -15px;
+            transform: rotate(180deg);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .author-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .author-title {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--light-color);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        
+        .contact-details {
+            margin: 30px 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            min-width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-right: 20px;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text p, .contact-text a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .contact-text a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: var(--white);
+            margin-right: 15px;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(197, 78, 26, 0.2);
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 70px 0 0;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-color);
+        }
+        
+        .footer-col p {
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+            display: block;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .footer-links a::before {
+            content: '\f105';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 25px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 80%;
+                height: calc(100vh - 70px);
+                padding: 30px;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: var(--transition);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+            
+            .btn-secondary {
+                margin-left: 10px;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .dishes, .about, .testimonials, .contact {
+                padding: 70px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.15rem;
+            }
+            
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-form .form-group {
+                margin-bottom: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header & Navigation -->
     <header>
-        <h1>Food for Humans</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-utensils logo-icon"></i>
+                    Savory<span>Bites</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#dishes">Menu</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <main>
-        <section id="about">
-            <h2>About Us</h2>
-            <p>We provide nourishing food options for individuals and families.</p>
-        </section>
-        <section id="services">
-            <h2>Our Services</h2>
-            <p>We offer meal plans, catering services, and nutrition advice.</p>
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>Email us at <a href="mailto:info@foodforhumans.com">info@foodforhumans.com</a></p>
-        </section>
-    </main>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Exquisite Dining Experience</h1>
+                <p>Where passion meets flavor in every dish. Join us for an unforgettable culinary journey crafted with the finest ingredients.</p>
+                <a href="#dishes" class="btn">Explore Menu</a>
+                <a href="#contact" class="btn btn-secondary">Reservation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dishes Section -->
+    <section class="dishes" id="dishes">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Signature Dishes</h2>
+                <p>Experience the art of fine dining with our chef's specially crafted creations</p>
+            </div>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Truffle Pasta" class="dish-img">
+                    <div class="dish-content">
+                        <h3>Truffle Mushroom Pasta</h3>
+                        <div class="price">$24.99</div>
+                        <p>Handmade fettuccine with wild mushrooms, truffle oil, and aged parmesan in a creamy sauce.</p>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1593819559779-4f0a3c62829a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Grilled Salmon" class="dish-img">
+                    <div class="dish-content">
+                        <h3>Pan-Seared Salmon</h3>
+                        <div class="price">$28.50</div>
+                        <p>Atlantic salmon with lemon-dill sauce, served with seasonal vegetables and herb-roasted potatoes.</p>
+                    </div>
+                </div>
+                <div class="dish-card">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Beef Tenderloin" class="dish-img">
+                    <div class="dish-content">
+                        <h3>Filet Mignon</h3>
+                        <div class="price">$36.00</div>
+                        <p>8oz grass-fed beef tenderloin with red wine reduction, served with truffle mashed potatoes and asparagus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded in 2010 by Chef <span class="highlight">Isabella Rossi</span>, Savory Bites began as a small neighborhood bistro with a passion for authentic flavors and exceptional service.</p>
+                    <p>Today, we continue our commitment to culinary excellence, sourcing the finest local ingredients and crafting dishes that tell a story with every bite. Our kitchen is a place where tradition meets innovation.</p>
+                    <p>At Savory Bites, we believe that great food brings people together. Whether it's a romantic dinner, family celebration, or business gathering, we create memorable experiences that nourish both body and soul.</p>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Guest Reviews</h2>
+                <p>Hear what our valued guests have to say about their experience</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">The filet mignon was cooked to perfection, and the service was impeccable. The ambiance made our anniversary celebration truly special.</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah J." class="author-img">
+                        <h4 class="author-name">Sarah Johnson</h4>
+                        <p class="author-title">Regular Guest</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">As a food critic, I've dined at many fine establishments, but Savory Bites stands out for its creative menu and attention to detail. The truffle pasta is divine!</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T." class="author-img">
+                        <h4 class="author-name">Michael Torres</h4>
+                        <p class="author-title">Food Critic</p>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">From the moment we walked in, we felt welcomed. The chef even came to our table to ensure everything was to our liking. An unforgettable dining experience!</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily R." class="author-img">
+                        <h4 class="author-name">Emily Rodriguez</h4>
+                        <p class="author-title">First-time Visitor</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact & Reserve</h2>
+                <p>Reach out to us or make a reservation for your next dining experience</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Address</h4>
+                                <p>123 Gourmet Avenue, Culinary District, New York, NY 10001</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p><a href="tel:+12125551234">(212) 555-1234</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Hours</h4>
+                                <p>Mon-Thu: 5PM - 10PM<br>Fri-Sat: 5PM - 11PM<br>Sunday: 4PM - 9PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Follow Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" placeholder="Number of Guests" min="1" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Special Requests or Comments"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Make Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Food for Humans. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Savory Bites</h3>
+                    <p>Where culinary artistry meets warm hospitality. We're dedicated to creating memorable dining experiences with exceptional food and service.</p>
+                    <p>&copy; 2026 Savory Bites Restaurant. All Rights Reserved.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#dishes">Menu</a></li>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Menu Highlights</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Seasonal Specials</a></li>
+                        <li><a href="#">Chef's Tasting Menu</a></li>
+                        <li><a href="#">Wine Pairings</a></li>
+                        <li><a href="#">Dessert Collection</a></li>
+                        <li><a href="#">Private Dining</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates, special offers, and exclusive event invitations.</p>
+                    <form class="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email Address" required style="margin-top:15px;">
+                        </div>
+                        <button type="submit" class="btn" style="padding:10px 20px; margin-top:10px;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Designed with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for food lovers | Premium Dining Experience in New York</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navLinks = document.getElementById('nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if(window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.15)';
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.boxShadow = 'var(--shadow)';
+                header.style.background = 'var(--white)';
+            }
+        });
+    </script>
 </body>
 </html>
